@@ -19,11 +19,3 @@ pub fn fill(buffer: &mut Vec<u32>, xrgb: u32) {
         *i = xrgb; // write something more funny here!
     }
 }
-
-/*
-    Draws a line in the screen buffer between the specified points
-    (x0, y0) -> (x1, y1)
-*/
-pub fn draw_line(buffer: &mut Vec<u32>, x0: u32, y0: u32, x1: u32, y1: u32, xrgb: u32) {
-    
-}

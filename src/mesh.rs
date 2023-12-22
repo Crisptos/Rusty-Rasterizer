@@ -1,16 +1,17 @@
-// Represents a coordinate in 3D world space
-pub struct Vector3 {
-    x: f32,
-    y: f32,
-    z: f32,
-}
-
+extern crate nalgebra_glm as glm;
+#[derive(Clone)]
 pub struct Triangle {
-    points: [Vector3; 3],
+    pub points: [glm::Vec4; 3],
 }
 
 pub struct Mesh {
-    tris: Vec<Triangle>,
+    pub tris: Vec<Triangle>,
+}
+
+impl Triangle {
+    pub fn new(points: [glm::Vec4; 3]) -> Self {
+        Triangle { points: (points) }
+    }
 }
 
 impl Mesh {
@@ -24,240 +25,112 @@ impl Mesh {
     pub fn new_cube() -> Self {
         let mut cube: Self = Mesh::new();
 
-        cube.tris.push(Triangle {   // South Face
+        cube.tris.push(Triangle {
+            // South Face
             points: ([
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
+                glm::Vec4::new(0.0, 0.0, 0., 1.0),
+                glm::Vec4::new(0.0, 1.0, 0.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 0.0, 1.0),
             ]),
         });
         cube.tris.push(Triangle {
             points: ([
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
+                glm::Vec4::new(0.0, 0.0, 0.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 0.0, 1.0),
+                glm::Vec4::new(1.0, 0.0, 0.0, 1.0),
             ]),
-        });                         // South Face
+        });
 
-        cube.tris.push(Triangle {   // East Face
+        cube.tris.push(Triangle {
+            // East Face
             points: ([
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
+                glm::Vec4::new(1.0, 0.0, 0.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 0.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 1.0, 1.0),
             ]),
         });
         cube.tris.push(Triangle {
             points: ([
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
+                glm::Vec4::new(1.0, 0.0, 0.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 1.0, 1.0),
+                glm::Vec4::new(1.0, 0.0, 1.0, 1.0),
             ]),
-        });                         // East Face
+        });
 
-        cube.tris.push(Triangle {   // North Face
+        cube.tris.push(Triangle {
+            // North Face
             points: ([
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
+                glm::Vec4::new(1.0, 0.0, 1.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 1.0, 1.0, 1.0),
             ]),
         });
         cube.tris.push(Triangle {
             points: ([
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
+                glm::Vec4::new(1.0, 0.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 1.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 0.0, 0.0, 1.0),
             ]),
-        });                         // North Face
+        });
 
-        cube.tris.push(Triangle {   // West Face
+        cube.tris.push(Triangle {
+            // West Face
             points: ([
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
+                glm::Vec4::new(0.0, 0.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 1.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 1.0, 0.0, 1.0),
             ]),
         });
         cube.tris.push(Triangle {
             points: ([
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
+                glm::Vec4::new(0.0, 0.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 1.0, 0.0, 1.0),
+                glm::Vec4::new(0.0, 0.0, 0.0, 1.0),
             ]),
-        });                         // West Face
+        });
 
-        cube.tris.push(Triangle {   // Top Face
+        cube.tris.push(Triangle {
+            // Top Face
             points: ([
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
+                glm::Vec4::new(0.0, 1.0, 0.0, 1.0),
+                glm::Vec4::new(0.0, 1.0, 1.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 1.0, 1.0),
             ]),
         });
         cube.tris.push(Triangle {
             points: ([
-                Vector3 {
-                    x: 0.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 1.0,
-                    z: 0.0,
-                },
+                glm::Vec4::new(0.0, 1.0, 0.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 1.0, 1.0),
+                glm::Vec4::new(1.0, 1.0, 0.0, 1.0),
             ]),
-        });                         // Top Face
+        });
 
-        cube.tris.push(Triangle {   // Bottom Face
+        cube.tris.push(Triangle {
+            // Bottom Face
             points: ([
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
+                glm::Vec4::new(1.0, 0.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 0.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 0.0, 0.0, 1.0),
             ]),
         });
         cube.tris.push(Triangle {
             points: ([
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 1.0,
-                },
-                Vector3 {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
-                Vector3 {
-                    x: 1.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
+                glm::Vec4::new(1.0, 0.0, 1.0, 1.0),
+                glm::Vec4::new(0.0, 0.0, 0.0, 1.0),
+                glm::Vec4::new(1.0, 0.0, 0.0, 1.0),
             ]),
-        });                         // Bottom Face
+        });
 
         cube
+    }
+
+    pub fn translate(&mut self, n: f32){
+        for tri in &self.tris{
+            for mut v in tri.points{
+                println!("Old: {}", v.z);
+                v.z += n;
+                println!("New: {}", v.z);
+            }
+        }
     }
 }
