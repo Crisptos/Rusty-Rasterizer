@@ -3,9 +3,9 @@ use crate::global::{HEIGHT, WIDTH, TO_RADIANS};
 use crate::mesh::Triangle;
 
 pub fn rotate(tri: &mut Triangle, delta_time: f32) {
-    tri.points[0] = glm::rotate_vec4(&tri.points[0], (15.0*TO_RADIANS)*delta_time, &glm::Vec3::new(1.0, 0.0, 0.0));
-    tri.points[1] = glm::rotate_vec4(&tri.points[1], (15.0*TO_RADIANS)*delta_time, &glm::Vec3::new(1.0, 0.0, 0.0));
-    tri.points[2] = glm::rotate_vec4(&tri.points[2], (15.0*TO_RADIANS)*delta_time, &glm::Vec3::new(1.0, 0.0, 0.0));
+    tri.points[0] = glm::rotate_vec4(&tri.points[0], (25.0*TO_RADIANS)*delta_time, &glm::Vec3::new(1.0, 0.0, 0.0));
+    tri.points[1] = glm::rotate_vec4(&tri.points[1], (25.0*TO_RADIANS)*delta_time, &glm::Vec3::new(1.0, 0.0, 0.0));
+    tri.points[2] = glm::rotate_vec4(&tri.points[2], (25.0*TO_RADIANS)*delta_time, &glm::Vec3::new(1.0, 0.0, 0.0));
 
     tri.points[0] = glm::rotate_vec4(&tri.points[0], (5.0*TO_RADIANS)*delta_time, &glm::Vec3::new(0.0, 0.0, 1.0));
     tri.points[1] = glm::rotate_vec4(&tri.points[1], (5.0*TO_RADIANS)*delta_time, &glm::Vec3::new(0.0, 0.0, 1.0));
